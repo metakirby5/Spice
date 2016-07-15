@@ -30,10 +30,6 @@ with nick colors from
 
 `git clone https://github.com/metakirby5/Spice.git "$HOME/Library/Group Containers/com.codeux.apps.textual/Library/Application Support/Textual/Styles/Spice"`
 
-## TODO
-
-- [ ] Inherit user nickname formatting in sender field.
-
 ## License
 
 Copyright (c) 2014 Ryan Grove (ryan@wonko.com)
