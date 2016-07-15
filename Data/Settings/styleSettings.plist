@@ -13,8 +13,5 @@
 
 	<key>Underlying Window Color</key>
 	<string>#252525</string>
-
-	<key>Indentation Offset</key>
-	<integer>6</integer>
     </dict>
 </plist>

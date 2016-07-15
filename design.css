@@ -82,9 +82,10 @@ body[type*=server] .sender {
 }
 
 .time {
-  color: var(--mg0);
-  font-size: 0.8em;
+  width: 6em;
   text-align: center;
+  font-size: 0.8em;
+  color: var(--mg0);
 }
 
 /* Make own messages stand out */
