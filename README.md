@@ -14,8 +14,7 @@ with Textual 5. It's based heavily on
 * Doesn't clobber any of your preferences. Wanna use a dark UI with Sugar?
   Fine. Wanna change how nicknames or timestamps are formatted? Cool.
 
-* Looks great with a wide variety of fonts. My favorite is Lucida Grande
-  13pt, which is just gorgeous on a Retina display.
+* Looks great with a wide variety of fonts. I use Helvetica Neue Light 14pt.
 
 * Coalesces multiple consecutive messages from the same sender rather than
   displaying the same nickname over and over.
@@ -28,6 +27,10 @@ with Textual 5. It's based heavily on
 ## Installing
 
 `git clone https://github.com/metakirby5/Spice.git "$HOME/Library/Group Containers/com.codeux.apps.textual/Library/Application Support/Textual/Styles/Spice"`
+
+## TODO
+
+- [ ] Inherit user nickname formatting in sender field.
 
 ## License
 
