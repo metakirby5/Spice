@@ -5,7 +5,7 @@ Spice is a dark theme for the Textual 5 client. It looks nice. It works well
 with Textual 5. It's based heavily on
 [Sugar](https://github.com/smockle-archive/textual-sugar).
 
-![Screenshot](https://dl.dropboxusercontent.com/u/45326422/textual-sugar.png)
+![Screenshot](https://ptpb.pw/~textual-spice.png)
 
 ## Features
 
