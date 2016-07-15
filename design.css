@@ -1,194 +1,176 @@
 @charset "utf-8";
 
+/* Variables */
+:root {
+  /* Generic shades, from darkest to lightest */
+  --bg0: #252525;
+  --bg1: #2a2a2a;
+  --bg2: #303030;
+  --bg3: #353535;
+  --bg4: #3a3a3a;
+  --bg5: #404040;
+  --bg6: #505050;
+  --mg0: #888;
+  --fg0: #aaa;
+  --fg1: #ccc;
+  --fg2: #eee;
+
+  /* Specific colors */
+  --link: #8cb3ff;
+  --notice: #ffeb3b;
+
+  /* Dimensions */
+  --topic-height: 2em;
+}
+
 /* Basic Body Structure */
 body {
-  background: #fff;
-  color: #545454;
-  font-family: 'Lucida Grande';
-  font-size: 13px;
-  line-height: 1.4;
+  background: var(--bg0);
+  color: var(--fg2);
   margin: 0;
   overflow-x: hidden;
   word-wrap: break-word;
 }
 
-a {
-  border-bottom: dotted 1px #8cb3ff;
-  color: #8cb3ff;
-  text-decoration: none;
-}
-
-a:hover {
-  border: none;
-  border-bottom: solid 1px #8cb3ff;
-}
-
 #body_home {
-  bottom: 0;
-  left: 0;
-  padding: 2em 0 4px;
   position: absolute;
-  right: 0;
+  bottom: 0;
   top: 0;
+  left: 0;
+  right: 0;
+  padding: calc(var(--topic-height) + 4px) 0 4px;
 }
 
-body[type*=server] #body_home {
-  padding: 2px 0;
+body[type*=server] #body_home,
+body[type*=query] #body_home {
+  /* No topic here. */
+  padding: 4px 0;
 }
 
-.message,
-.sender,
-.time {
-  padding: 6px 8px 5px;
-}
-
-.message {
-  max-width: 90%;
-  width: 100%;
-}
-
-.sender,
-.time {
-  background: white;
-}
-
-.sender {
-  font-weight: 400;
-  overflow: hidden;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 10em;
-}
-
-body[type*=server] .sender { display: none; }
-
-.time {
-  color: #888;
-  font-size: 0.8em;
-  line-height: 1.8;
-  white-space: nowrap;
-}
-
+/* Message Lines */
 .line {
   display: -webkit-flex;
   -webkit-flex-flow: row;
 }
 
-.line[nickname-type*=myself] .message,
-.line[nickname-type*=myself] .sender,
-.line[nickname-type*=myself] .time {
-  background: #e1eaf4;
+.message,
+.sender,
+.time {
+  padding: 6px 8px;
 }
 
+.message {
+  width: 100%;
+}
+
+.sender,
+.time {
+  background: var(--bg2);
+}
+
+.sender {
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 10em;
+  font-weight: 400;
+}
+
+body[type*=server] .sender {
+  display: none;
+}
+
+.time {
+  color: var(--mg0);
+  font-size: 0.8em;
+  text-align: center;
+}
+
+/* Make own messages stand out */
+.line[nickname-type*=myself] .message {
+  background: var(--bg1);
+}
+
+/* Make special messages blend in */
 .line[type*=action] .message,
 .line[type*=action] .sender {
   background: none;
   font-style: italic;
 }
 
-.line[type*=action] .sender {
-  padding-right: 2px;
-}
-
-body[type*=channel] .event .message {
-  color: #666;
-}
-
-.event .message:before {
-  content: '» ';
-}
-
-body[type*=server] .event .message {
-  color: #999;
-  font-size: inherit;
-  padding-left: 1em;
-  padding-right: 2em;
-}
-
-body[type*=server] .event .message:before {
-  content: '';
-}
-
 .event .sender {
   background: inherit;
 }
 
-.text[highlight*=true],
-.text[highlight*=true] .time {
-  color: #fff;
+body[type*=channel] .event .message {
+  color: var(--mg0);
 }
 
+body[type*=server] .event .message {
+  color: var(--fg0);
+}
+
+/* Make my highlights stand out */
 .text[highlight*=true] .sender,
 .text[highlight*=true] .message,
 .text[highlight*=true] .time {
-  background-color: #e1eaf4;
+  background-color: var(--bg6);
 }
 
-body [type*=notice] .sender,
-body [type*=notice] .message,
-body [type*=notice] .time {
-  background-color: #fef7e5;
-}
-
+/* Notices have a yellow bar */
 body [type*=notice] .sender {
-  border-left: 4px solid #f5c24f;
+  border-left: 4px solid var(--notice);
+  width: calc(10em - 4px);
+  color: var(--notice);
 }
 
-.text[highlight*=true] .message {
-  color: #545454;
-}
-
+/* Horizontal lines */
 .znc-playback-end {
-  border-bottom: 1px dashed #9f9f9f;
+  border-bottom: 1px dashed var(--mg0);
 }
 
 .znc-playback-start {
-  border-top: 1px dashed #9f9f9f;
+  border-top: 1px dashed var(--mg0);
 }
 
 #mark {
-  border-bottom: 1px dotted #9f9f9f;
+  border-bottom: 1px dotted var(--mg0);
   margin: 1px 0;
   -webkit-transition: 0.2s linear;
 }
 
 /* Loading Screen */
 body div#loading_screen {
-  position:absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -11px;
-  margin-left: -150px;
-  width: 300px;
-  height: 21px;
-  font-size: 18px;
-  background: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  color: #545454;
-  padding: 5px;
-  padding-left: 10px;
-  opacity: 1; /* Set by JavaScript */
   -webkit-transition: opacity 0.8s linear;
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 40%;
+  text-align: center;
+  font-size: 2em;
+  background: var(--bg0);
+  color: var(--mg0);
 }
 
-/* Topic Bar */
+/* Topic Bar (scrollable, one-line) */
 #topic_bar {
-  background: #f5f5f5;
-  border-bottom: 1px solid #ccc;
-  box-shadow: none;
-  color: #545454;
-  font-size: 0.8em;
-  font-weight: normal;
-  left: 0;
-  line-height: 1.8;
-  opacity: 1 !important; /* Overrides JS opacity. */
-  padding: 4px 12px 2px;
-  position: fixed;
-  right: 0;
-  top: 0;
   z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topic-height);
+  white-space: nowrap;
+  overflow: auto;
+  background: var(--bg1);
+  border-bottom: 1px solid var(--bg5);
+  color: var(--fg1);
+  line-height: 1.8;
+  padding: 4px 12px 2px;
 }
 
 /* Images */
@@ -197,64 +179,97 @@ a img {
 }
 
 a img:hover {
-  outline: 2px solid #284e84;
+  outline: 2px solid var(--bg6);
 }
 
 img {
   display: block;
-  margin: 15px 15px 12px 0;
-  max-height: 40%;
-  max-width: 95%;
+  margin: 1em 1em 1em 0;
 }
 
-/* Nickname Colors */
+/* Inline Text */
+a {
+  border-bottom: dotted 1px var(--link);
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  border: none;
+  border-bottom: solid 1px var(--link);
+}
+
 body .inline_nickname {
-  color: #333;
   display: inline-block;
   line-height: 1;
   padding: 4px 3px;
-  background: #f5f5f5;
-  border: 1px solid #d0d0d0;
+  background: var(--bg4);
+  border: 1px solid var(--bg6);
   border-radius: 3px;
 }
 
-body .line {
-  border-top:1px solid #efefef;
-}
-
-body .text .sender[type*=myself] { color: #ff8c00; }
-
-body .sender[type*=normal][colornumber='0']  { color: #718c00; }
-body .sender[type*=normal][colornumber='1']  { color: #718c00; }
-body .sender[type*=normal][colornumber='2']  { color: #3e999f; }
-body .sender[type*=normal][colornumber='3']  { color: #8959a8; }
-body .sender[type*=normal][colornumber='4']  { color: #4271ae; }
-body .sender[type*=normal][colornumber='5']  { color: #c82829; }
-body .sender[type*=normal][colornumber='6']  { color: #c82829; }
-body .sender[type*=normal][colornumber='7']  { color: #3e999f; }
-body .sender[type*=normal][colornumber='8']  { color: #8959a8; }
-body .sender[type*=normal][colornumber='9']  { color: #c82829; }
-body .sender[type*=normal][colornumber='10'] { color: #718c00; }
-body .sender[type*=normal][colornumber='11'] { color: #eab700; }
-body .sender[type*=normal][colornumber='12'] { color: #718c00; }
-body .sender[type*=normal][colornumber='13'] { color: #3e999f; }
-body .sender[type*=normal][colornumber='14'] { color: #c82829; }
-body .sender[type*=normal][colornumber='15'] { color: #c82829; }
-body .sender[type*=normal][colornumber='16'] { color: #c82829; }
-body .sender[type*=normal][colornumber='17'] { color: #f5871f; }
-body .sender[type*=normal][colornumber='18'] { color: #eab700; }
-body .sender[type*=normal][colornumber='19'] { color: #718c00; }
-body .sender[type*=normal][colornumber='20'] { color: #3e999f; }
-body .sender[type*=normal][colornumber='21'] { color: #3e999f; }
-body .sender[type*=normal][colornumber='22'] { color: #8959a8; }
-body .sender[type*=normal][colornumber='23'] { color: #8959a8; }
-body .sender[type*=normal][colornumber='24'] { color: #c82829; }
-body .sender[type*=normal][colornumber='25'] { color: #718c00; }
-body .sender[type*=normal][colornumber='26'] { color: #4271ae; }
-body .sender[type*=normal][colornumber='27'] { color: #3e999f; }
-body .sender[type*=normal][colornumber='28'] { color: #eab700; }
-body .sender[type*=normal][colornumber='29'] { color: #c82829; }
-body .sender[type*=normal][colornumber='30'] { color: #8959a8; }
+/* Nickname Colors */
+body *[colornumber='0'  ] { color: #718c00; }
+body *[colornumber='1'  ] { color: #718c00; }
+body *[colornumber='2'  ] { color: #3e999f; }
+body *[colornumber='3'  ] { color: #8959a8; }
+body *[colornumber='4'  ] { color: #4271ae; }
+body *[colornumber='5'  ] { color: #c82829; }
+body *[colornumber='6'  ] { color: #c82829; }
+body *[colornumber='7'  ] { color: #3e999f; }
+body *[colornumber='8'  ] { color: #8959a8; }
+body *[colornumber='9'  ] { color: #c82829; }
+body *[colornumber='10' ] { color: #718c00; }
+body *[colornumber='11' ] { color: #eab700; }
+body *[colornumber='12' ] { color: #718c00; }
+body *[colornumber='13' ] { color: #3e999f; }
+body *[colornumber='14' ] { color: #c82829; }
+body *[colornumber='15' ] { color: #c82829; }
+body *[colornumber='16' ] { color: #c82829; }
+body *[colornumber='17' ] { color: #f5871f; }
+body *[colornumber='18' ] { color: #eab700; }
+body *[colornumber='19' ] { color: #718c00; }
+body *[colornumber='20' ] { color: #3e999f; }
+body *[colornumber='21' ] { color: #3e999f; }
+body *[colornumber='22' ] { color: #8959a8; }
+body *[colornumber='23' ] { color: #8959a8; }
+body *[colornumber='24' ] { color: #c82829; }
+body *[colornumber='25' ] { color: #718c00; }
+body *[colornumber='26' ] { color: #4271ae; }
+body *[colornumber='27' ] { color: #3e999f; }
+body *[colornumber='28' ] { color: #eab700; }
+body *[colornumber='29' ] { color: #c82829; }
+body *[colornumber='30' ] { color: #8959a8; }
+body *[colornumber='-1' ] { color: #718c00; }
+body *[colornumber='-2' ] { color: #3e999f; }
+body *[colornumber='-3' ] { color: #8959a8; }
+body *[colornumber='-4' ] { color: #4271ae; }
+body *[colornumber='-5' ] { color: #c82829; }
+body *[colornumber='-6' ] { color: #c82829; }
+body *[colornumber='-7' ] { color: #3e999f; }
+body *[colornumber='-8' ] { color: #8959a8; }
+body *[colornumber='-9' ] { color: #c82829; }
+body *[colornumber='-10'] { color: #718c00; }
+body *[colornumber='-11'] { color: #eab700; }
+body *[colornumber='-12'] { color: #718c00; }
+body *[colornumber='-13'] { color: #3e999f; }
+body *[colornumber='-14'] { color: #c82829; }
+body *[colornumber='-15'] { color: #c82829; }
+body *[colornumber='-16'] { color: #c82829; }
+body *[colornumber='-17'] { color: #f5871f; }
+body *[colornumber='-18'] { color: #eab700; }
+body *[colornumber='-19'] { color: #718c00; }
+body *[colornumber='-20'] { color: #3e999f; }
+body *[colornumber='-21'] { color: #3e999f; }
+body *[colornumber='-22'] { color: #8959a8; }
+body *[colornumber='-23'] { color: #8959a8; }
+body *[colornumber='-24'] { color: #c82829; }
+body *[colornumber='-25'] { color: #718c00; }
+body *[colornumber='-26'] { color: #4271ae; }
+body *[colornumber='-27'] { color: #3e999f; }
+body *[colornumber='-28'] { color: #eab700; }
+body *[colornumber='-29'] { color: #c82829; }
+body *[colornumber='-30'] { color: #8959a8; }
 
 /* mIRC Color Codes */
 .effect[color-number='0']  { color: #ffffff; }
