@@ -143,7 +143,7 @@ body [type*=notice] .sender {
 
 /* Loading Screen */
 body div#loading_screen {
-  -webkit-transition: opacity 0.8s linear;
+  pointer-events: none;
   z-index: 3;
   position: fixed;
   top: 0;
@@ -155,6 +155,7 @@ body div#loading_screen {
   font-size: 2em;
   background: var(--bg0);
   color: var(--mg0);
+  -webkit-transition: opacity 0.8s linear;
 }
 
 /* Topic Bar (scrollable, one-line) */
@@ -176,7 +177,7 @@ body div#loading_screen {
 
 /* Images */
 a img {
-  border: 0;
+  border: none;
 }
 
 a img:hover {
@@ -190,13 +191,12 @@ img {
 
 /* Inline Text */
 a {
+  text-decoration: none;
   border-bottom: dotted 1px var(--link);
   color: var(--link);
-  text-decoration: none;
 }
 
 a:hover {
-  border: none;
   border-bottom: solid 1px var(--link);
 }
 
