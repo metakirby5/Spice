@@ -13,8 +13,8 @@ with nick colors from
 
 * Easy on the eyes.
 
-* Doesn't clobber any of your preferences. Wanna use a dark UI with Sugar?
-  Fine. Wanna change how nicknames or timestamps are formatted? Cool.
+* Doesn't clobber nickname or timestamp formats. Will clobber your light
+  theme preferences, because light themes are for plebs.
 
 * Looks great with a wide variety of fonts. I use Helvetica Neue Light 14pt.
 
