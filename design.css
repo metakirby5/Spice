@@ -94,8 +94,8 @@ body[viewtype*=server] .sender {
 }
 
 /* Make special messages blend in */
-.line[type*=action] .message,
-.line[type*=action] .sender {
+.line[ltype*=action] .message,
+.line[ltype*=action] .sender {
   background: none;
   font-style: italic;
 }
