@@ -159,6 +159,16 @@ body div#loading_screen {
   -webkit-transition: opacity 0.8s linear;
 }
 
+/* Loading History */
+#historic_messages {
+  transition: opacity 0.2s linear;
+  opacity: 0;
+}
+
+#historic_messages.loaded {
+  opacity: 0.6;
+}
+
 /* Topic Bar (scrollable, one-line) */
 #topic_bar {
   z-index: 2;
