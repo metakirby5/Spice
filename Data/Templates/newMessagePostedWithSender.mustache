@@ -45,13 +45,13 @@
 		{{#inlineMediaAvailable}}
 			{{#inlineMediaArray}}
 
-			<span class="inlineImageCell" id="inlineImage-{{anchorInlineImageUniqueID}}" style="display: none;">
-				<span class="closeButton" href="#" onclick="Textual.toggleInlineImage('{{anchorInlineImageUniqueID}}', false);">×</span>
-
-				<a href="{{anchorLink}}" onclick="return InlineImageLiveResize.negateAnchorOpen()">
-					<img src="{{imageURL}}" class="image" style="max-width: {{preferredMaximumWidth}}px;" />
+			<div class="inlineImageCell" id="inlineImage-{{anchorInlineImageUniqueID}}" style="display: none;">
+				<a href="{{anchorLink}}" onclick="return Textual.toggleInlineImage('{{anchorInlineImageUniqueID}}', true);">
+					<img src="{{imageURL}}" class="image"
+					title="Shift-click to hide."
+					style="max-width: {{preferredMaximumWidth}}px;" />
 				</a>
-			</span>
+			</div>
 			
 			{{/inlineMediaArray}}
 		{{/inlineMediaAvailable}}
