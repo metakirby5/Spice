@@ -29,7 +29,7 @@ Sugar = {
 
     getLineEl: function (lineNum) {
         if (typeof lineNum === 'string') {
-            return doc.getElementById('line' + lineNum);
+            return doc.getElementById('line-' + lineNum);
         }
 
         if (lineNum && lineNum.classList
@@ -42,7 +42,7 @@ Sugar = {
 
     getLineType: function (line) {
         line = Sugar.getLineEl(line);
-        return line ? line.getAttribute('type') : null;
+        return line ? line.getAttribute('ltype') : null;
     },
 
     getMessage: function (line) {
@@ -57,7 +57,7 @@ Sugar = {
 
     getSenderNick: function (line) {
         var senderEl = Sugar.getSenderEl(line);
-        return senderEl ? senderEl.getAttribute('nick') : null;
+        return senderEl ? senderEl.getAttribute('nickname') : null;
     },
 
     handleBufferPlayback: function (lineNum) {
