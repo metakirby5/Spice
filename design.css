@@ -61,7 +61,7 @@ body div#loading_screen {
   font-size: 2em;
   background: var(--bg0);
   color: var(--mg0);
-  -webkit-transition: opacity 0.8s linear;
+  transition: opacity 0.8s linear;
 }
 
 /* Topic Bar (scrollable, one-line) */
@@ -83,8 +83,8 @@ body div#loading_screen {
 
 /* Loading History */
 #historic_messages {
-  transition: opacity 0.2s linear;
   opacity: 0;
+  transition: opacity 0.2s linear;
 }
 
 #historic_messages.loaded {
@@ -93,8 +93,8 @@ body div#loading_screen {
 
 /* Message Lines */
 .line {
-  display: -webkit-flex;
-  -webkit-flex-flow: row;
+  display: flex;
+  flex-flow: row;
 }
 
 .message,
@@ -183,20 +183,22 @@ body[viewtype*=notice] .sender {
 #mark {
   border-bottom: 1px dotted var(--mg0);
   margin: 1px 0;
-  -webkit-transition: 0.2s linear;
 }
 
 /* Images */
-a img {
-  border: none;
+a.image-link, a.image-link:hover {
+  border-bottom: none;
 }
 
-a img:hover {
-  outline: 2px solid var(--bg6);
-}
-
-img {
+a.image-link img {
   margin-top: 1em;
+  outline: 2px solid;
+  outline-color: rgba(0, 0, 0, 0);
+  transition: outline-color 0.1s linear;
+}
+
+a.image-link img:hover {
+  outline-color: var(--mg0);
 }
 
 /* Inline Text */
