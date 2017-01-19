@@ -4,12 +4,12 @@
 :root {
   /* Core colors */
   --background: #222222;
-  --middleground: #333;
-  --faded: #666;
+  --middleground: #2a2a2a;
+  --faded: #999;
   --foreground: #eee;
 
   /* Attribute colors */
-  --highlight: #555;
+  --highlight: #404040;
   --link: #7bf;
   --notice: #ff0;
 
@@ -71,8 +71,8 @@ body div#loading_screen {
   height: var(--topic-height);
   white-space: nowrap;
   overflow: auto;
-  background: var(--middleground);
-  border-bottom: 1px solid var(--faded);
+  background: var(--background);
+  border-bottom: 1px solid var(--middleground);
   color: var(--foreground);
   line-height: 1.8;
   padding: 0.2rem 0.4rem;
@@ -85,7 +85,7 @@ body div#loading_screen {
 }
 
 #historic_messages.loaded {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 /* Message Lines */
@@ -189,7 +189,7 @@ a.image-link img {
 }
 
 a.image-link img:hover {
-  outline-color: var(--faded);
+  outline-color: var(--link);
 }
 
 /* Inline Text */
@@ -206,9 +206,9 @@ a:hover {
 body .inline_nickname {
   display: inline-block;
   line-height: 1;
-  padding: 0.2rem 0.1rem;
-  background: var(--middleground);
-  border: 1px solid var(--highlight);
+  padding: 0.2rem;
+  background: var(--highlight);
+  border: 1px solid var(--middleground);
   border-radius: 0.2rem;
 }
 
