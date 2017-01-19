@@ -21,6 +21,8 @@
 
   /* Dimensions */
   --topic-height: 2em;
+  --sender-width: 8rem;
+  --time-width: 4rem;
 }
 
 /* Basic Body Structure */
@@ -105,7 +107,8 @@ body div#loading_screen {
 }
 
 .message {
-  width: 100%;
+  flex: 1;
+  word-break: break-all;
 }
 
 .sender,
@@ -114,12 +117,12 @@ body div#loading_screen {
 }
 
 .sender {
+  flex-basis: var(--sender-width);
+  flex-shrink: 0;
   overflow: hidden;
   text-align: right;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 10em;
-  font-weight: 400;
 }
 
 body[viewtype*=server] .sender {
@@ -127,7 +130,8 @@ body[viewtype*=server] .sender {
 }
 
 .time {
-  width: 6em;
+  flex-basis: var(--time-width);
+  flex-shrink: 0;
   text-align: center;
   font-size: 0.8em;
   color: var(--mg0);
@@ -159,28 +163,20 @@ body[viewtype*=server] .event .message {
 }
 
 /* Make my highlights stand out */
-.text[highlight*=true] .sender,
-.text[highlight*=true] .message,
-.text[highlight*=true] .time {
+.line[highlight*=true] .sender,
+.line[highlight*=true] .message,
+.line[highlight*=true] .time {
   background-color: var(--bg6);
 }
 
 /* Notices have a yellow bar */
-body[viewtype*=notice] .sender {
+.line[ltype*=notice] .sender {
+  flex-basis: calc(var(--sender-width) - 0.2rem);
   border-left: 0.2rem solid var(--notice);
-  width: calc(10em - 0.2rem);
   color: var(--notice);
 }
 
 /* Horizontal lines */
-.znc-playback-end {
-  border-bottom: 1px dashed var(--mg0);
-}
-
-.znc-playback-start {
-  border-top: 1px dashed var(--mg0);
-}
-
 #mark {
   border-bottom: 1px dotted var(--mg0);
   margin: 1px 0;
@@ -193,7 +189,7 @@ a.image-link, a.image-link:hover {
 
 a.image-link img {
   margin-top: 1em;
-  outline: 0.1rem solid;
+  outline: 0.15rem solid;
   outline-color: rgba(0, 0, 0, 0);
   transition: outline-color 0.1s linear;
 }
