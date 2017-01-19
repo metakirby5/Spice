@@ -21,11 +21,6 @@ with nick colors from
 * Coalesces multiple consecutive messages from the same sender rather than
   displaying the same nickname over and over.
 
-* Provides handy start and end markers for ZNC playback.
-
-* Plucks the ugly in-message timestamps out of ZNC playback and puts them
-  in the timestamp column where they belong.
-
 ## Installing
 
 `git clone https://github.com/metakirby5/Spice.git "$HOME/Library/Group Containers/com.codeux.apps.textual/Library/Application Support/Textual/Styles/Spice"`
