@@ -2,22 +2,16 @@
 
 /* Variables */
 :root {
-  /* Generic shades, from darkest to lightest */
-  --bg0: #252525;
-  --bg1: #2a2a2a;
-  --bg2: #303030;
-  --bg3: #353535;
-  --bg4: #3a3a3a;
-  --bg5: #404040;
-  --bg6: #505050;
-  --mg0: #888;
-  --fg0: #aaa;
-  --fg1: #ccc;
-  --fg2: #eee;
+  /* Core colors */
+  --background: #222;
+  --middleground: #333;
+  --faded: #666;
+  --foreground: #eee;
 
-  /* Specific colors */
-  --link: #8cb3ff;
-  --notice: #ffff00;
+  /* Attribute colors */
+  --highlight: #555;
+  --link: #6af;
+  --notice: #ff0;
 
   /* Dimensions */
   --topic-height: 2em;
@@ -27,8 +21,8 @@
 
 /* Basic Body Structure */
 body {
-  background: var(--bg0);
-  color: var(--fg2);
+  background: var(--background);
+  color: var(--foreground);
   margin: 0;
   overflow-x: hidden;
   word-wrap: break-word;
@@ -62,8 +56,8 @@ body div#loading_screen {
   left: 0;
   right: 0;
   font-size: 2em;
-  background: var(--bg0);
-  color: var(--mg0);
+  background: var(--background);
+  color: var(--faded);
   transition: opacity 0.8s linear;
 }
 
@@ -77,9 +71,9 @@ body div#loading_screen {
   height: var(--topic-height);
   white-space: nowrap;
   overflow: auto;
-  background: var(--bg1);
-  border-bottom: 1px solid var(--bg5);
-  color: var(--fg1);
+  background: var(--middleground);
+  border-bottom: 1px solid var(--faded);
+  color: var(--foreground);
   line-height: 1.8;
   padding: 0.2rem 0.4rem;
 }
@@ -113,7 +107,7 @@ body div#loading_screen {
 
 .sender,
 .time {
-  background: var(--bg2);
+  background: var(--middleground);
 }
 
 .sender {
@@ -134,12 +128,12 @@ body[viewtype*=server] .sender {
   flex-shrink: 0;
   text-align: center;
   font-size: 0.8em;
-  color: var(--mg0);
+  color: var(--faded);
 }
 
 /* Make own messages stand out */
-.line[nickname-type*=myself] .message {
-  background: var(--bg1);
+.line[mtype*=myself] .message {
+  background: var(--middleground);
 }
 
 /* Make special messages blend in */
@@ -155,18 +149,18 @@ body[viewtype*=server] .sender {
 
 body[viewtype*=channel] .event .message,
 body[viewtype*=query] .event .message {
-  color: var(--mg0);
+  color: var(--faded);
 }
 
 body[viewtype*=server] .event .message {
-  color: var(--fg0);
+  color: var(--faded);
 }
 
 /* Make my highlights stand out */
 .line[highlight*=true] .sender,
 .line[highlight*=true] .message,
 .line[highlight*=true] .time {
-  background-color: var(--bg6);
+  background-color: var(--highlight);
 }
 
 /* Notices have a yellow bar */
@@ -178,7 +172,7 @@ body[viewtype*=server] .event .message {
 
 /* Horizontal lines */
 #mark {
-  border-bottom: 1px dotted var(--mg0);
+  border-bottom: 1px dotted var(--faded);
   margin: 1px 0;
 }
 
@@ -195,7 +189,7 @@ a.image-link img {
 }
 
 a.image-link img:hover {
-  outline-color: var(--mg0);
+  outline-color: var(--faded);
 }
 
 /* Inline Text */
@@ -213,8 +207,8 @@ body .inline_nickname {
   display: inline-block;
   line-height: 1;
   padding: 0.2rem 0.1rem;
-  background: var(--bg4);
-  border: 1px solid var(--bg6);
+  background: var(--middleground);
+  border: 1px solid var(--highlight);
   border-radius: 0.2rem;
 }
 
