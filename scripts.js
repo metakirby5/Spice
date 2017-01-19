@@ -1,118 +1,38 @@
-var doc = document,
-    qs  = doc.querySelector;
+// API: /Applications/Textual.app/Contents/Resources/JavaScript/API/core.js
+'use strict'
 
-// -- Sugar -------------------------------------------------------------------
-var Sugar;
+const d = document
 
-Sugar = {
-    lineCache: {},
-    playbackMode: false,
+// Coalesce sender nicks
+const line = el => {
+  const sender = el.querySelector('.sender')
+  const nick = sender.getAttribute('nickname')
+  return {el, sender, nick}
+}
 
-    coalesceMessages: function (lineNum) {
-        var lineEl     = Sugar.getLineEl(lineNum),
-            prevLineEl = lineEl && Sugar.getLineEl(lineEl.previousElementSibling),
-            prevSender = Sugar.getSenderNick(prevLineEl),
-            sender     = Sugar.getSenderNick(lineEl);
+const coalesce = (/* cur, prev */ ...args) => {
+  const [cur, prev] = args.map(line)
+  if (cur.nick === prev.nick) {
+    cur.sender.innerHTML = ''
+  }
+}
 
-        if (!sender || !prevSender) {
-            return;
-        }
+Textual.newMessagePostedToView = id => {
+  const el = d.querySelector(`#line-${id}`)
+  coalesce(el, el.previousElementSibling)
+}
 
-        if (sender === prevSender
-                && Sugar.getLineType(lineEl) === 'privmsg'
-                && Sugar.getLineType(prevLineEl) === 'privmsg') {
+Textual.viewFinishedLoadingHistory = _ => {
+  Array.from(d.querySelector('#historic_messages').children)
+    .reduce((prev, cur) => {
+      if (prev) {
+        coalesce(cur, prev)
+      }
+      return cur
+    })
+}
 
-            lineEl.classList.add('coalesced');
-            Sugar.getSenderEl(lineEl).innerHTML = '';
-        }
-    },
-
-    getLineEl: function (lineNum) {
-        if (typeof lineNum === 'string') {
-            return doc.getElementById('line-' + lineNum);
-        }
-
-        if (lineNum && lineNum.classList
-                && lineNum.classList.contains('line')) {
-            return lineNum;
-        }
-
-        return null;
-    },
-
-    getLineType: function (line) {
-        line = Sugar.getLineEl(line);
-        return line ? line.getAttribute('ltype') : null;
-    },
-
-    getMessage: function (line) {
-        line = Sugar.getLineEl(line);
-        return line ? line.querySelector('.message').textContent.trim() : null;
-    },
-
-    getSenderEl: function (line) {
-        line = Sugar.getLineEl(line);
-        return line ? line.querySelector('.sender') : null;
-    },
-
-    getSenderNick: function (line) {
-        var senderEl = Sugar.getSenderEl(line);
-        return senderEl ? senderEl.getAttribute('nickname') : null;
-    },
-
-    handleBufferPlayback: function (lineNum) {
-        var line = Sugar.getLineEl(lineNum),
-            message;
-
-        if (Sugar.getSenderNick(line) === '***') {
-            message = Sugar.getMessage(line);
-
-            if (message === 'Buffer Playback...') {
-                line.classList.add('znc-playback-start');
-                Sugar.playbackMode = true;
-            } else if (message === 'Playback Complete.') {
-                line.classList.add('znc-playback-end');
-                Sugar.playbackMode = false;
-            }
-
-            return;
-        }
-
-        if (Sugar.playbackMode) {
-            var match;
-
-            line.classList.add('znc-playback');
-
-            message = Sugar.getMessage(line);
-            match   = message.match(/^\[(\d\d:\d\d:\d\d)\] /);
-
-            if (match) {
-                var msgEl = line.querySelector('.message');
-
-                line.querySelector('.time').textContent = match[1];
-                msgEl.innerHTML = msgEl.innerHTML.replace(/^\s*\[\d\d:\d\d:\d\d\]/, '');
-            }
-        }
-    }
-};
-
-// -- Textual ------------------------------------------------------------------
-
-// Defined in: "Textual.app -> Contents -> Resources -> JavaScript -> API -> core.js"
-
-Textual.newMessagePostedToView = function (lineNum) {
-    Sugar.handleBufferPlayback(lineNum);
-    Sugar.coalesceMessages(lineNum);
-};
-
-Textual.viewFinishedLoading = function () {
-    Textual.fadeOutLoadingScreen(1.00, 0.95);
-
-    setTimeout(function () {
-        Textual.scrollToBottomOfView();
-    }, 300);
-};
-
-Textual.viewFinishedReload = function () {
-    Textual.viewFinishedLoading();
-};
+// Fade out loading screen
+Textual.viewFinishedLoading = Textual.viewFinishedReload = _ => {
+    Textual.fadeOutLoadingScreen(1.00, 0.95)
+}

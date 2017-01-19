@@ -49,15 +49,16 @@ body[viewtype*=query] #body_home {
 
 /* Loading Screen */
 body div#loading_screen {
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 3;
+  pointer-events: none;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  padding-top: 40%;
-  text-align: center;
   font-size: 2em;
   background: var(--bg0);
   color: var(--mg0);
