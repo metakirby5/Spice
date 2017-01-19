@@ -38,13 +38,13 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  padding: calc(var(--topic-height) + 4px) 0 4px;
+  padding: calc(var(--topic-height) + 0.2rem) 0 0.2rem;
 }
 
 body[viewtype*=server] #body_home,
 body[viewtype*=query] #body_home {
   /* No topic here. */
-  padding: 4px 0;
+  padding: 0.2rem 0;
 }
 
 /* Loading Screen */
@@ -79,7 +79,7 @@ body div#loading_screen {
   border-bottom: 1px solid var(--bg5);
   color: var(--fg1);
   line-height: 1.8;
-  padding: 4px 12px 2px;
+  padding: 0.2rem 0.4rem;
 }
 
 /* Loading History */
@@ -101,7 +101,7 @@ body div#loading_screen {
 .message,
 .sender,
 .time {
-  padding: 6px 8px;
+  padding: 0.5rem;
 }
 
 .message {
@@ -167,8 +167,8 @@ body[viewtype*=server] .event .message {
 
 /* Notices have a yellow bar */
 body[viewtype*=notice] .sender {
-  border-left: 4px solid var(--notice);
-  width: calc(10em - 4px);
+  border-left: 0.2rem solid var(--notice);
+  width: calc(10em - 0.2rem);
   color: var(--notice);
 }
 
@@ -193,7 +193,7 @@ a.image-link, a.image-link:hover {
 
 a.image-link img {
   margin-top: 1em;
-  outline: 2px solid;
+  outline: 0.1rem solid;
   outline-color: rgba(0, 0, 0, 0);
   transition: outline-color 0.1s linear;
 }
@@ -216,10 +216,10 @@ a:hover {
 body .inline_nickname {
   display: inline-block;
   line-height: 1;
-  padding: 4px 3px;
+  padding: 0.2rem 0.1rem;
   background: var(--bg4);
   border: 1px solid var(--bg6);
-  border-radius: 3px;
+  border-radius: 0.2rem;
 }
 
 /* Nickname Colors */
